@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const NavBar = () => {
+const NavBar = ({ onSearch }) => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -13,6 +13,9 @@ const NavBar = () => {
 
   const handleToggle = (e) => {
     setTheme(e.target.value);
+  };
+  const handleSearchChange = (e) => {
+    onSearch(e.target.value);
   };
 
   return (
@@ -27,6 +30,7 @@ const NavBar = () => {
               type="text"
               placeholder="Buscar"
               className="input input-bordered w-24 md:w-auto"
+              onChange={handleSearchChange}
             />
           </div>
           <div className="dropdown">
