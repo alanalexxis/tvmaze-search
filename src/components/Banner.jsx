@@ -9,7 +9,7 @@ const Banner = () => {
         const response = await fetch("https://api.tvmaze.com/shows");
         const shows = await response.json();
 
-        const randomShows = shows.sort(() => Math.random() - 0.5).slice(0, 6);
+        const randomShows = shows.sort(() => Math.random() - 0.5).slice(0, 20);
 
         const images = randomShows.map((show) => ({
           id: show.id,
@@ -22,11 +22,15 @@ const Banner = () => {
       }
     };
 
-    // Fetch initial images
+    // Fetch initial images only once
     fetchRandomShowImages();
 
-    // Set up interval to fetch new images every 3 seconds
-    const intervalId = setInterval(fetchRandomShowImages, 3000);
+    // Set up interval to shuffle the order of the initial images every 3 seconds
+    const intervalId = setInterval(() => {
+      setRandomShowImages((prevImages) => [
+        ...prevImages.sort(() => Math.random() - 0.5),
+      ]);
+    }, 3000);
 
     // Clear interval on component unmount to avoid memory leaks
     return () => clearInterval(intervalId);
