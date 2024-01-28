@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const NavBar = () => {
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  const handleToggle = (e) => {
+    setTheme(e.target.value);
+  };
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -34,33 +48,37 @@ const NavBar = () => {
             >
               <li>
                 <input
+                  onChange={handleToggle}
                   type="radio"
                   name="theme-dropdown"
                   className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                  aria-label="Default"
-                  value="default"
+                  aria-label="Light"
+                  value="light"
                 />
               </li>
               <li>
                 <input
+                  onChange={handleToggle}
                   type="radio"
                   name="theme-dropdown"
                   className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                  aria-label="Retro"
-                  value="retro"
+                  aria-label="Dark"
+                  value="dark"
                 />
               </li>
               <li>
                 <input
+                  onChange={handleToggle}
                   type="radio"
                   name="theme-dropdown"
                   className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                  aria-label="Cyberpunk"
-                  value="cyberpunk"
+                  aria-label="Cupcake"
+                  value="cupcake"
                 />
               </li>
               <li>
                 <input
+                  onChange={handleToggle}
                   type="radio"
                   name="theme-dropdown"
                   className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
@@ -70,11 +88,12 @@ const NavBar = () => {
               </li>
               <li>
                 <input
+                  onChange={handleToggle}
                   type="radio"
                   name="theme-dropdown"
                   className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                  aria-label="Aqua"
-                  value="aqua"
+                  aria-label="Retro"
+                  value="retro"
                 />
               </li>
             </ul>
