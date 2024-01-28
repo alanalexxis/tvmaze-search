@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import logo from "../assets/logo.png";
 const NavBar = ({ onSearch }) => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -22,7 +22,7 @@ const NavBar = ({ onSearch }) => {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">TvMaze Search</a>
+          <img src={logo} alt="" className="w-1/4" />
         </div>
         <div className="flex-none gap-2">
           <div className="form-control">
