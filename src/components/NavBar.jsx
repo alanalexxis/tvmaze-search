@@ -19,7 +19,7 @@ const NavBar = () => {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">TvMaze Search</a>
         </div>
         <div className="flex-none gap-2">
           <div className="form-control">
@@ -31,7 +31,7 @@ const NavBar = () => {
           </div>
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn m-1">
-              Theme
+              Tema
               <svg
                 width="12px"
                 height="12px"
