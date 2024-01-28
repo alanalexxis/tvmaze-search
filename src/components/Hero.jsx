@@ -14,17 +14,18 @@ const Hero = ({ searchQuery }) => {
           searchQuery
         )}`;
       } else {
-        // Si la búsqueda es vacía, obtener todos los shows populares y seleccionar aleatoriamente 9
         const allShowsUrl = "https://api.tvmaze.com/shows";
         const allShowsResponse = await axios.get(allShowsUrl);
         const randomShows = getRandomShows(allShowsResponse.data, 9);
         setShows(randomShows);
         setLoading(false);
+
         return;
       }
 
       try {
         const response = await axios.get(url);
+        console.log("API Response:", response.data); // Log the obtained data
         setShows(response.data.slice(0, 9).map((item) => item.show));
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -59,21 +60,19 @@ const Hero = ({ searchQuery }) => {
       ) : shows.length > 0 ? (
         shows.map((show) => (
           <div
-            className="card w-96 bg-base-100 shadow-xl transform transition-transform hover:scale-105"
+            className="card w-96 bg-base-100 shadow-xl transform transition-transform hover:scale-105 bg-cover bg-no-repeat group relative"
             key={show?.id}
+            style={{
+              backgroundImage:
+                show && show.image ? `url(${show.image.original})` : "none",
+            }}
           >
-            <figure>
-              {show && show.image && show.image.medium && (
-                <img
-                  src={show.image.medium}
-                  alt={`Poster for ${show.name || "Unknown"}`}
-                />
-              )}
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{show?.name || "Unknown"}</h2>
+            <div className="card-body opacity-0 group-hover:opacity-100 transition-opacity backdrop-filter backdrop-blur-md p-4 inset-0 bg-gradient-to-t from-black to-transparent">
+              <h2 className="card-title underline">
+                {show?.name || "Unknown"}
+              </h2>
               <p
-                className="text-justify"
+                className="text-justify text-gray-300"
                 dangerouslySetInnerHTML={{
                   __html: truncateSummary(show?.summary || "", 30),
                 }}
