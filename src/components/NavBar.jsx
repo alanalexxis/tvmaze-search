@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 const NavBar = ({ onSearch }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -19,8 +32,12 @@ const NavBar = ({ onSearch }) => {
   };
 
   return (
-    <div>
-      <div className="navbar bg-base-100">
+    <div
+      className={`sticky top-0 z-50 ${
+        isScrolled ? "bg-base-200 shadow-lg" : ""
+      }`}
+    >
+      <div className="navbar bg-base-100 ">
         <div className="flex-1">
           <img src={logo} alt="" className="w-1/4" />
         </div>

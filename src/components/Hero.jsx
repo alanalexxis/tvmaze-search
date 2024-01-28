@@ -53,12 +53,15 @@ const Hero = ({ searchQuery }) => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center md:justify-start space-x-4 overflow-x-auto">
+    <div className="flex flex-wrap justify-center md:justify-between space-y-4 overflow-x-auto overflow-hidden">
       {loading ? (
         <p>Loading...</p>
       ) : shows.length > 0 ? (
         shows.map((show) => (
-          <div className="card w-96 bg-base-100 shadow-xl" key={show?.id}>
+          <div
+            className="card w-96 bg-base-100 shadow-xl transform transition-transform hover:scale-105"
+            key={show?.id}
+          >
             <figure>
               {show && show.image && show.image.medium && (
                 <img
