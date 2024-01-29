@@ -53,6 +53,11 @@ const Hero = ({ searchQuery }) => {
     return shuffledShows.slice(0, count);
   };
 
+  const handleShowDetails = (showId) => {
+    const tvMazeUrl = `https://www.tvmaze.com/shows/${showId}`;
+    window.open(tvMazeUrl, "_blank");
+  };
+
   return (
     <div className="flex flex-wrap justify-center md:justify-between space-y-4 overflow-x-auto overflow-hidden">
       {loading ? (
@@ -78,7 +83,12 @@ const Hero = ({ searchQuery }) => {
                 }}
               />
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">Ver ahora</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleShowDetails(show.id)}
+                >
+                  Ver ahora
+                </button>
               </div>
             </div>
           </div>
