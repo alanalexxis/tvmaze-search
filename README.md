@@ -1,4 +1,4 @@
-# TVMAZE SEARCH API
+# tvmaze search
 
 # Swiftly search and explore TV shows using React, daisyUI, and Tailwind CSS. Uncover show details with the TV Maze API. 🚀
 
