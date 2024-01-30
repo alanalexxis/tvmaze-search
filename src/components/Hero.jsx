@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import StarRating from "./StarRaiting";
 const Hero = ({ searchQuery }) => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -82,6 +82,11 @@ const Hero = ({ searchQuery }) => {
                   __html: truncateSummary(show?.summary || "", 30),
                 }}
               />
+
+              <div className="star-rating-container">
+                <StarRating rating={show?.rating?.average || 0} />
+              </div>
+
               <div className="card-actions justify-end">
                 <button
                   className="btn btn-primary"
