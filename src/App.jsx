@@ -4,8 +4,8 @@ import "./App.css";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
+import Homee from "./components/Home";
 import NavBar from "./components/NavBar";
-import Homee from "./components/home";
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
 
